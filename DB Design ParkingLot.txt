@@ -1,0 +1,41 @@
+Table Parking {
+  parking_Spot_id integer [primary key]
+  Parking_spot_no varchar
+  floor_no integer
+  spot_type varchar
+  is_available boolean
+}
+
+Table vehicle {
+  vehicle_id integer [primary key]
+  vehicle_num varchar2
+  vehicle_type varchar
+}
+
+Table ticket {
+  ticket_id integer unique [primary key]
+  entry_time timestamp
+  exit_time timestamp
+}
+
+Table fees{
+  ticket_id integer
+  vehicle_id integer
+  parking_Spot_id integer
+  entry_time timestamp
+  exit_time timestamp
+  total_price integer
+
+}
+
+
+Ref: "vehicle"."vehicle_id" < "fees"."vehicle_id"
+
+Ref: "Parking"."parking_Spot_id" < "fees"."parking_Spot_id"
+
+Ref: "ticket"."ticket_id" < "fees"."ticket_id"
+
+
+Ref: "ticket"."entry_time" < "fees"."entry_time"
+
+Ref: "ticket"."exit_time" < "fees"."exit_time"
